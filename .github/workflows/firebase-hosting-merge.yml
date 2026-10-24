@@ -8,7 +8,9 @@ name: Deploy a producción
 
 # TODO A1: Cambiá el trigger para que corra en cada push a la rama `main`.
 on:
-  workflow_dispatch:
+  push:
+    branches:
+       -main
 
 permissions:
   contents: read
@@ -44,15 +46,15 @@ jobs:
         run: npm run build
         env:
           NEXT_TELEMETRY_DISABLED: 1
-          NEXT_PUBLIC_BUILD_SHA: "TODO"
-          NEXT_PUBLIC_BUILD_REF: "TODO"
+          NEXT_PUBLIC_BUILD_SHA: ${{github.sha}}
+          NEXT_PUBLIC_BUILD_REF: ${{github.ref_name}}
           NEXT_PUBLIC_BUILD_TIME: ${{ github.event.head_commit.timestamp }}
 
       - name: Deploy al canal live
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           # TODO A3: mismo secreto que en el workflow de PR.
-          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_REEMPLAZAR }}
-          projectId: REEMPLAZAR-POR-TU-PROJECT-ID
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_PRACTICA_FIREBASE_A1181 }}
+          projectId: practica-firebase-a1181
           # TODO A3: ¿qué valor de channelId publica en producción?
-          # channelId: ???
+          channelId: live
