@@ -14,16 +14,17 @@ on:
 
 permissions:
   contents: read
-
-# TODO A4 (opcional): en producción NO queremos cancelar un deploy a mitad de
-#                     camino, pero sí evitar dos deploys en paralelo.
-#                     ¿Cómo configurás `concurrency` para eso?
+  
+# A4: los deploys a producción esperan en fila y nunca se cortan a la mitad.
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
 
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
-    # TODO A5 (opcional): asociá este job a un GitHub Environment llamado
-    #                     `production` (permite exigir aprobación manual).
+# A5: job asociado al GitHub Environment "production".
+    environment: production
     steps:
       - name: Checkout
         uses: actions/checkout@v7

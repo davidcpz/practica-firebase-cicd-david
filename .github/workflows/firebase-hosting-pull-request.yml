@@ -16,8 +16,10 @@ permissions:
   checks: write
   pull-requests: write # la action comenta la URL del preview en el PR
 
-# TODO A4 (opcional): agregá un bloque `concurrency` para que, si se pushea dos
-#                     veces seguidas al mismo PR, se cancele el build anterior.
+# A4: si se pushea dos veces seguidas al mismo PR, se cancela el build anterior.
+concurrency:
+  group: preview-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
 
 jobs:
   build_and_preview:
