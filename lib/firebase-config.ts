@@ -10,10 +10,12 @@
  * si estos valores son reales. Para producción tenés que completarlos.
  */
 export const firebaseConfig = {
-  apiKey: "PEGAR_ACA_TU_APIKEY",
+  apiKey: "AIzaSyAyYOhPBWiA1pqQGoskOW7L5Uf7j0BMsE4",
   authDomain: "practica-firebase-a1181.firebaseapp.com",
   projectId: "practica-firebase-a1181",
-  appId: "PEGAR_ACA_TU_APPID",
+  storageBucket: "practica-firebase-a1181.firebasestorage.app",
+  messagingSenderId: "448480350996",
+  appId: "1:448480350996:web:6a1806be7015ba5a986801",
 };
 
 /** Debe coincidir con dataconnect/dataconnect.yaml y dataconnect/cursos/connector.yaml */
