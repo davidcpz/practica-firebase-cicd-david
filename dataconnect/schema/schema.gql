@@ -40,3 +40,8 @@ type Alumno @table {
 #  ¿Por qué `Matricula` y no `Inscripcion`? SQL Connect arma el plural agregando
 #  una "s" (curso → cursos). "inscripcions" quedaría mal; "matriculas" no.
 # ─────────────────────────────────────────────────────────────────────────────
+type Matricula @table(key: ["alumno", "curso"]) {
+  alumno: Alumno!
+  curso: Curso!
+  fecha: Timestamp! @default(expr: "request.time")
+}
