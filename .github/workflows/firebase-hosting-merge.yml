@@ -50,6 +50,8 @@ jobs:
           NEXT_PUBLIC_BUILD_SHA: ${{github.sha}}
           NEXT_PUBLIC_BUILD_REF: ${{github.ref_name}}
           NEXT_PUBLIC_BUILD_TIME: ${{ github.event.head_commit.timestamp }}
+      - name: Hashes de scripts inline para la CSP
+        run: node scripts/csp-hashes.mjs
 
       - name: Deploy al canal live
         uses: FirebaseExtended/action-hosting-deploy@v0

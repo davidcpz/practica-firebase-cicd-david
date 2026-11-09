@@ -51,6 +51,9 @@ jobs:
           NEXT_PUBLIC_BUILD_REF: ${{github.head_ref}}
           NEXT_PUBLIC_BUILD_TIME: ${{ github.event.pull_request.updated_at }}
 
+      - name: Hashes de scripts inline para la CSP
+        run: node scripts/csp-hashes.mjs
+
       - name: Deploy a preview channel
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
