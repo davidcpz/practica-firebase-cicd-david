@@ -22,10 +22,15 @@ mutation UpsertAlumno($nombre: String!) @auth(level: USER) {
 #   - La clave foránea hacia Alumno se llama alumnoId → alumnoId_expr
 #   - `matricula_insert` vs `matricula_upsert`: ¿cuál es idempotente?
 # ─────────────────────────────────────────────────────────────────────────────
-
+mutation Inscribirme($cursoId: UUID!) @auth(level: USER) {
+  matricula_upsert(data: { alumnoId_expr: "auth.uid", cursoId: $cursoId })
+}
 
 # ─────────────────────────────────────────────────────────────────────────────
 #  TODO L5 (opcional): Mutation `DarmeDeBaja($cursoId: UUID!)`
 #   - Borra la inscripción del usuario que llama en ese curso, y solo esa.
 #   - Pista: matricula_delete(key: { ... })
 # ─────────────────────────────────────────────────────────────────────────────
+mutation DarmeDeBaja($cursoId: UUID!) @auth(level: USER) {
+  matricula_delete(key: { alumnoId_expr: "auth.uid", cursoId: $cursoId })
+}

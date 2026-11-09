@@ -21,7 +21,7 @@ query ListCursos @auth(level: PUBLIC, insecureReason: "El catálogo de cursos es
 # ⚠️ Operación heredada de un desarrollador anterior. Se usa en el panel de admin.
 # TODO L4: auditá esta operación. ¿Quién puede ejecutarla? ¿Qué datos devuelve?
 #          Corregila con el nivel de acceso adecuado.
-query ListAlumnos @auth(level: PUBLIC, insecureReason: "Lo necesita el panel de administración.") {
+query ListAlumnos @auth(level: NO_ACCESS) {
   alumnos {
     id
     nombre
@@ -46,3 +46,17 @@ query ListAlumnos @auth(level: PUBLIC, insecureReason: "Lo necesita el panel de 
 #       matriculas_on_alumno
 #     y se le puede poner un alias:  matriculas: matriculas_on_alumno { ... }
 # ─────────────────────────────────────────────────────────────────────────────
+query MisInscripciones @auth(level: USER) {
+  alumno(key: { id_expr: "auth.uid" }) {
+    nombre
+    matriculas: matriculas_on_alumno {
+      fecha
+      curso {
+        id
+        titulo
+        nivel
+        horas
+      }
+    }
+  }
+}
