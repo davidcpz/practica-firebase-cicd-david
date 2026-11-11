@@ -57,8 +57,12 @@
       }
     ]
   },
-  "dataconnect": {
+    "dataconnect": {
     "source": "dataconnect"
+  },
+  "firestore": {
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
   },
   "emulators": {
     "auth": {
@@ -67,6 +71,9 @@
     "dataconnect": {
       "port": 9399,
       "dataDir": "dataconnect/.dataconnect/pgliteData"
+    },
+    "firestore": {
+      "port": 8080
     },
     "hosting": {
       "port": 5000
