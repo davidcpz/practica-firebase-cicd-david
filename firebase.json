@@ -14,7 +14,7 @@
         "headers": [
           {
             "key": "Content-Security-Policy",
-            "value": "default-src 'self'; script-src 'self' __INLINE_SCRIPT_HASHES__; style-src 'self'; img-src 'self' data: https://picsum.photos https://fastly.picsum.photos; font-src 'self'; connect-src 'self' https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://firebasedataconnect.googleapis.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests"
+            "value": "default-src 'self'; script-src 'self' __INLINE_SCRIPT_HASHES__; style-src 'self'; img-src 'self' data: https://picsum.photos https://fastly.picsum.photos; font-src 'self'; connect-src 'self' https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://firebasedataconnect.googleapis.com https://firestore.googleapis.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests"
           },
           {
             "key": "Strict-Transport-Security",
@@ -60,6 +60,10 @@
   "dataconnect": {
     "source": "dataconnect"
   },
+  "firestore": {
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
+  },
   "emulators": {
     "auth": {
       "port": 9099
@@ -67,6 +71,9 @@
     "dataconnect": {
       "port": 9399,
       "dataDir": "dataconnect/.dataconnect/pgliteData"
+    },
+    "firestore": {
+      "port": 8080
     },
     "hosting": {
       "port": 5000
